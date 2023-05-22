@@ -1,0 +1,29 @@
+{
+  "name": "react-native-animated-border",
+  "version": "1.0.2",
+  "description": "Add animated border on your react-native component",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "react-native",
+    "animated",
+    "border",
+    "color"
+  ],
+  "author": "Marius Monkam <mariusmonkam@yahoo.fr> (https://marius-monkam.herokuapp.com)",
+  "license": "MIT",
+  "peerDependencies": {
+    "react-native": ">=0.59.0"
+  },
+  "devDependencies": {
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-native": "^0.63.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/MariusMonkam/react-native-animated-border.git"
+  }
+}
