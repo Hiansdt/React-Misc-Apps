@@ -12,7 +12,7 @@ import React, { Component } from "react";
 export default class Main extends Component {
   state = {
     tarefas: [],
-    nomeTarefa: '',
+    nomeTarefa: '.',
     descTarefa: '',
   };
 
@@ -31,35 +31,50 @@ export default class Main extends Component {
 
   render() {
     return (
-      <View>
-        <Pressable
-          onPress={() => this.addTarefa()}
-          style={{ backgroundColor: "rgb(50,50,50)" }}
-        >
-          <Text
+      <View style={styles.container}>
+        <Text
             style={{
-              color: "white",
-              fontSize: 15,
+              color: "black",
+              fontSize: 20,
               fontWeight: 600,
               padding: 10,
             }}
           >
-            Adicionar Tarefa
+            To-do
           </Text>
-        </Pressable>
-        <SafeAreaView>
+        <SafeAreaView style={{flex: 1, flexDirection: 'row'}}>
           <TextInput
             placeholder="Digite o nome da tarefa"
-            style={{ height: 40 }}
+            style={{ height: 30 }}
             onChangeText={nomeTarefa => this.setState({nomeTarefa})}
             defaultValue
           />
+          <Pressable
+          onPress={() => this.addTarefa()}
+        >
+          <Text
+            style={{
+              flex: 1,
+              color: "white",
+              fontSize: 30,
+              fontWeight: 600,
+              padding: 10,
+              backgroundColor: '#a44aff',
+              height: 30,
+              textAlign: "center",
+              alignContent: "center",
+              justifyContent: "center"
+            }}
+          >
+            +
+          </Text>
+        </Pressable>
         </SafeAreaView>
         <FlatList
           data={this.state.tarefas}
           renderItem={({ item }) => (
             <View>
-              <Text>{item.nome}</Text>
+              <Text style={{backgroundColor: 'grey'}}>{item.nome}</Text>
               <Text>{item.descricao}</Text>
             </View>
           )}
@@ -68,3 +83,10 @@ export default class Main extends Component {
     );
   }
 }
+
+const styles = StyleSheet.create({
+  container: {
+    backgroundColor: 'white',
+    marginTop: 300,
+  }
+})

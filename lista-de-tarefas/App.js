@@ -6,7 +6,7 @@ export default function App() {
   return (
     <View style={styles.container}>
       <Header />
-      <View style={styles.container}>
+      <View style={{flex: 10, height: 10,}}>
         <Main />
       </View>
     </View>
@@ -15,8 +15,8 @@ export default function App() {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 20,
-    backgroundColor: "#fff",
+    flex: 2,
+    backgroundColor: 'rgb(195,0,132)',
     alignItems: "center",
     justifyContent: "center",
   },
