@@ -7,6 +7,7 @@ import {
   TextInput,
   SafeAreaView,
   ImageBackground,
+  Alert,
 } from "react-native";
 import React, { Component } from "react";
 
@@ -17,15 +18,17 @@ export default class Main extends Component {
   };
 
   addTarefa() {
-    this.setState({
-      tarefas: [
-        ...this.state.tarefas,
-        {
-          nome: this.state.nomeTarefa,
-        },
-      ],
-      nomeTarefa: "",
-    });
+    if (this.nomeTarefa) {
+      this.setState({
+        tarefas: [
+          ...this.state.tarefas,
+          {
+            nome: this.state.nomeTarefa,
+          },
+        ],
+        nomeTarefa: "",
+      });
+    }
   }
 
   removerTarefa(index) {
@@ -70,6 +73,7 @@ export default class Main extends Component {
             value={this.state.nomeTarefa}
             onChangeText={(nomeTarefa) => this.setState({ nomeTarefa })}
             onKeyPress={(e) => this.ativacaoDeTecla(e)}
+            onSubmitEditing={() => this.addTarefa()}
           />
           <Pressable
             onPress={() => this.addTarefa()}
@@ -93,7 +97,10 @@ export default class Main extends Component {
             </Text>
           </Pressable>
         </SafeAreaView>
-        <ImageBackground source={{uri: 'https://wallpapercave.com/wp/wp6621664.jpg'}} style={{marginTop: 40, resizeMode: 'contain', height: 250,}}>
+        <ImageBackground
+          source={{ uri: "https://wallpapercave.com/wp/wp6621664.jpg" }}
+          style={{ marginTop: 40, resizeMode: "contain", height: 250 }}
+        >
           <FlatList
             style={{ padding: 10, marginBottom: 10 }}
             data={this.state.tarefas}
@@ -109,7 +116,7 @@ export default class Main extends Component {
                   height: 35,
                 }}
               >
-                <Text style={{ padding: 5, color: 'white'}}>{item.nome}</Text>
+                <Text style={{ padding: 5, color: "white" }}>{item.nome}</Text>
                 <Pressable
                   onPress={() =>
                     this.removerTarefa(this.state.tarefas.indexOf(item))
@@ -151,6 +158,6 @@ const styles = StyleSheet.create({
     marginTop: "50%",
     borderRadius: 3,
     height: "50%",
-    width: 300
+    width: 300,
   },
 });
