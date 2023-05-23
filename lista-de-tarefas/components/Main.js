@@ -6,6 +6,7 @@ import {
   StyleSheet,
   TextInput,
   SafeAreaView,
+  ImageBackground,
 } from "react-native";
 import React, { Component } from "react";
 
@@ -28,15 +29,15 @@ export default class Main extends Component {
   }
 
   removerTarefa(index) {
-    this.state.tarefas.splice(index, 1)
+    this.state.tarefas.splice(index, 1);
     this.setState({
       tarefas: this.state.tarefas,
-    })
+    });
   }
 
   ativacaoDeTecla(e) {
-    if (e.key == 'Enter') {
-      this.addTarefa()
+    if (e.key == "Enter") {
+      this.addTarefa();
     }
   }
 
@@ -51,7 +52,7 @@ export default class Main extends Component {
             padding: 10,
           }}
         >
-          To-do
+          Todo App
         </Text>
         <SafeAreaView style={{ flex: 1, flexDirection: "row", padding: 10 }}>
           <TextInput
@@ -62,6 +63,8 @@ export default class Main extends Component {
               borderColor: "rgb(200, 200, 200)",
               borderWidth: 1,
               borderRadius: 3,
+              height: 35,
+              width: 250,
             }}
             clearButtonMode="always"
             value={this.state.nomeTarefa}
@@ -71,18 +74,17 @@ export default class Main extends Component {
           <Pressable
             onPress={() => this.addTarefa()}
             style={{
-              justifyContent: "center",
-              height: "100%",
+              height: 35,
               borderRadius: 2,
+              justifyContent: "center",
             }}
           >
             <Text
               style={{
-                color: "white",
-                fontSize: 20,
+                color: "purple",
+                fontSize: 30,
                 fontWeight: 600,
                 width: 30,
-                backgroundColor: "#a44aff",
                 textAlign: "center",
                 borderRadius: 2,
               }}
@@ -91,47 +93,53 @@ export default class Main extends Component {
             </Text>
           </Pressable>
         </SafeAreaView>
-        <FlatList
-          style={{ marginTop: 10, padding: 10 }}
-          data={this.state.tarefas}
-          renderItem={({ item }) => (
-            <View
-              style={{
-                padding: 3,
-                flex: 1,
-                flexDirection: "row",
-                backgroundColor: "rgb(235, 235, 235)",
-              }}
-            >
-              <Text style={{ padding: 5 }}>{item.nome}</Text>
-              <Pressable
-                onPress={() => this.removerTarefa(this.state.tarefas.indexOf(item))}
+        <ImageBackground source={{uri: 'https://wallpapercave.com/wp/wp6621664.jpg'}} style={{marginTop: 40, resizeMode: 'contain', height: 250,}}>
+          <FlatList
+            style={{ padding: 10, marginBottom: 10 }}
+            data={this.state.tarefas}
+            renderItem={({ item }) => (
+              <View
                 style={{
-                  justifyContent: "center",
-                  height: "100%",
-                  borderRadius: 2,
-                  position: 'absolute',
-                  right: 0,
+                  padding: 3,
+                  flex: 1,
+                  flexDirection: "row",
+                  backgroundColor: "rgba(50, 50, 50, 0.4)",
+                  marginBottom: 10,
+                  alignContent: "center",
+                  height: 35,
                 }}
               >
-                <Text
+                <Text style={{ padding: 5, color: 'white'}}>{item.nome}</Text>
+                <Pressable
+                  onPress={() =>
+                    this.removerTarefa(this.state.tarefas.indexOf(item))
+                  }
                   style={{
-                    color: "white",
-                    fontSize: 20,
-                    fontWeight: 600,
-                    backgroundColor: "red",
-                    textAlign: "center",
+                    justifyContent: "center",
+                    height: 35,
                     borderRadius: 2,
-                    marginBottom: 5,
-                    width: 20,
+                    position: "absolute",
+                    right: 0,
                   }}
                 >
-                  x
-                </Text>
-              </Pressable>
-            </View>
-          )}
-        />
+                  <Text
+                    style={{
+                      color: "rgba(240, 50, 50, 1)",
+                      fontSize: 25,
+                      fontWeight: 600,
+                      textAlign: "center",
+                      borderRadius: 2,
+                      marginBottom: 5,
+                      width: 20,
+                    }}
+                  >
+                    x
+                  </Text>
+                </Pressable>
+              </View>
+            )}
+          />
+        </ImageBackground>
       </View>
     );
   }
@@ -140,7 +148,9 @@ export default class Main extends Component {
 const styles = StyleSheet.create({
   container: {
     backgroundColor: "white",
-    marginTop: 300,
+    marginTop: "50%",
     borderRadius: 3,
+    height: "50%",
+    width: 300
   },
 });
